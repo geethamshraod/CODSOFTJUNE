@@ -1,0 +1,52 @@
+questions=("What is the capital of India?:",
+           "Who is the most followed celebrity on Instagram?:",
+           "Which is the fastest mammal in the world?:",
+           "How many elements are present in the periodic table?:",
+           "Which planet is considered the largest among all?:")
+
+
+options=(("A.New Delhi ","B.Hyderabad ","C.Mumbai ","D.Chennai"),
+         ("A.Leonel Messi ","B.Virat Kohli ","C.Selena Gomez ","D.Cristiano Ronaldo"),
+         ("A.Tiger ","B.Rat ","C.Cheetah ","D.Deer"),
+         ("A.116 ","B.118 ","C.117 ","D.120"),
+         ("A.Uranus ","B.Neptune ","C.Jupiter ","D.Pluto"))
+
+crct_options=("A","D","C","B","C")
+def quiz_game():
+  your_options=[]
+  score=0
+  question_num=0
+  for question in questions:
+    print(question)
+    for option in options[question_num]:
+        print(option)
+    your_option=input("Enter your option:").upper()
+    your_options.append(your_option)
+    if your_option==crct_options[question_num]:
+        score+=1
+        print("Correct")
+    else:
+        print("incorrect")
+        print(f"{crct_options[question_num]} is the correct answer")
+    print("----------------------------------------------------")
+    question_num+=1    
+  print("Correct Answers:",end="")
+  for answer in crct_options:
+    print(answer,end=" ")
+  print()
+  print("Your Answers:",end="")
+  for guess in your_options:
+    print(guess,end=" ")
+  print()
+  score=int(score/ len(questions)*100)
+  print(f"Your Score is: {score}%")
+
+while True:
+    print("Welcome to the General Knowledge Quiz!")
+    quiz_game()
+
+    play_again = input("Do you want to play again? (yes/no): ")
+    if play_again.lower() != "yes":
+        break
+
+print("Thank you for playing!")
