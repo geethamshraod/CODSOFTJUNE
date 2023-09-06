@@ -1,0 +1,23 @@
+import requests
+
+'''For weather forecasting...firstly we have to get the API key from 
+the openweathermap.org website,it is an application programming interface 
+which may allows developers to access a weather API and retrieve weather data
+from the provider's servers.'''
+
+api_key='3af8d896ee974f607cd3f3f178a7bc10'
+
+user_input=input("enter city:")
+
+weather_data= weather_data=requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={user_input}&APPID={api_key}&units=imperial")
+
+if weather_data.json()['cod']=='404':
+    print("no city")
+else:
+    weather=weather_data.json()['weather'][0]['main']
+    temperature=round(weather_data.json()['main']['temp'])
+    humidity=weather_data.json()['main']['humidity']
+
+    print(f"The weather in {user_input} is {weather}")
+    print(f"The temperature is {temperature} F")
+    print(f"The humidity is {humidity} %")
