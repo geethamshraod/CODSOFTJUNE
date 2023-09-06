@@ -1,0 +1,61 @@
+import tkinter
+import tkinter.messagebox
+
+window=tkinter.Tk()
+window.title("To Do List")
+
+listbox=[]
+
+def task_add():
+    task=add_task.get()
+    if task:
+        listbox.append(task)
+        update_task_listbox()
+        add_task.delete(0,tkinter.END)
+    else:
+        tkinter.messagebox.showwarning(title="Lookout",message="Make sure to add a task")
+        
+def task_remove():
+    selected_task = task_listbox.curselection()
+    if selected_task:
+        index = selected_task[0]
+        listbox.pop(index)
+        update_task_listbox()
+    else:
+        tkinter.messagebox.showwarning(message="Select something to delete")
+        
+
+def update_task_listbox():
+    task_listbox.delete(0, tkinter.END)
+    for task in listbox:
+        task_listbox.insert(tkinter.END, task)
+    
+        
+
+task_listbox=tkinter.Frame(window)
+task_listbox.pack()
+
+task_listbox=tkinter.Listbox(task_listbox,height=20,width=40)
+task_listbox.pack(side=tkinter.LEFT)
+
+#scroller=tkinter.Scrollbar(task_listbox)
+#scroller.pack(side=tkinter.RIGHT,fill=tkinter.Y)
+
+#listbox.config(yscrollcommand=scroller.set)
+#scroller.config(command=task_listbox.yview)
+
+add_task=tkinter.Entry(window,width=60)
+add_task.pack()
+
+add_task_b=tkinter.Button(window,text="Add task",width=40,command=task_add)
+add_task_b.pack()
+
+del_task_b=tkinter.Button(window,text="Remove task",width=40,command=task_remove)
+del_task_b.pack()
+
+window.mainloop()
+
+
+
+
+
